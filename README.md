@@ -5,4 +5,12 @@ im 迁移到 mqtt
 
 > 消息处理是共用的
 
-> [tencent git demo](https://github.com/tencentyun/TIMSDK/tree/master/H5)
+### tencent im
+> [git demo](https://github.com/tencentyun/TIMSDK/tree/master/H5)
+
+- 获取配置、签名后端完成
+
+### mqtt
+> [git sdk](https://github.com/eclipse/paho.mqtt.javascript)
+
+> [git demo](https://github.com/AliwareMQ/lmq-demo)

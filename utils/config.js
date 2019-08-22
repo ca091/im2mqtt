@@ -4,5 +4,5 @@ var ConfigIm = {
 }
 
 var Config = {
-  use: 'im'
+  useIm: false
 }
