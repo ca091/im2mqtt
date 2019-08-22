@@ -52,3 +52,7 @@ if (Config.useIm) {
     });
   })
 }
+
+if (Config.useMqtt) {
+  MQTTconnect()
+}
