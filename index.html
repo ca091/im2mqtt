@@ -8,6 +8,9 @@
 <section>
   <button class="btn-login">im login</button>
   <button class="btn-logout">im logout</button>
+  <button class="btn-create">im create big group</button>
+  <button class="btn-join">im join big group</button>
+  <button class="btn-quit">im quit big group</button>
 </section>
 <!-- 签名计算 -->
 <script src="./sdk_im/debug/lib-generate-test-usersig.min.js"></script>
@@ -19,11 +22,16 @@
 
 <script src="./im/listeners.js"></script>
 <script src="./im/callbacks.js"></script>
-<script src="./utils/login-out.js"></script>
+<script src="./utils/access.js"></script>
+<script src="./utils/groups.js"></script>
 <script>
   var btnLogin = document.querySelector('.btn-login')
   var btnLogout = document.querySelector('.btn-logout')
-  var userId = 'qwe001'
+  var btnCreate = document.querySelector('.btn-create')
+  var btnJoin = document.querySelector('.btn-join')
+  var btnQuit = document.querySelector('.btn-quit')
+  var userId = 'user001'
+  var groupId = 'group001'
   var signInfo = genTestUserSig(userId)
   //当前用户身份
   var loginInfo = {
@@ -36,15 +44,29 @@
   };
   var options = {
     'isAccessFormalEnv': false, //是否访问正式环境，默认访问正式，选填
-    'isLogOn': false //是否开启控制台打印日志,默认开启，选填
+    'isLogOn': true //是否开启控制台打印日志,默认开启，选填
   }
-
+  // 登录
   btnLogin.addEventListener('click', () => {
     webimLogin(loginInfo, listeners_im, options, cb_im_login_success, cb_im_login_fail)
   })
-
+  // 登出
   btnLogout.addEventListener('click', () => {
     webimLogout(cb_im_logout_success, cb_im_logout_fail)
+  })
+  // 建群
+  btnCreate.addEventListener('click', () => {
+    createBigGroup(groupId, loginInfo, () => {
+      // applyJoinBigGroup(groupId)
+    })
+  })
+  // 加群
+  btnJoin.addEventListener('click', () => {
+    applyJoinBigGroup(groupId)
+  })
+  // 退群
+  btnQuit.addEventListener('click', () => {
+    quitBigGroup(groupId)
   })
 </script>
 </body>

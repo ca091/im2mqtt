@@ -1,4 +1,3 @@
-//sdk登录
 function webimLogin(loginInfo, listeners, options, successCB, errorCB) {
   webim.login(
       loginInfo, listeners, options,
@@ -14,5 +13,11 @@ function webimLogin(loginInfo, listeners, options, successCB, errorCB) {
 }
 
 function webimLogout(successCB, errorCB) {
-  webim.logout(successCB, errorCB);
+  webim.logout(
+      function(resp) {
+        successCB && successCB(resp);
+      },
+      function(err) {
+        errorCB && errorCB(err);
+      });
 }
