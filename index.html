@@ -8,9 +8,14 @@
 <section>
   <button class="btn-login">im login</button>
   <button class="btn-logout">im logout</button>
+</section>
+<section>
   <button class="btn-create">im create big group</button>
   <button class="btn-join">im join big group</button>
   <button class="btn-quit">im quit big group</button>
+</section>
+<section>
+  <button class="btn-send">im send msg</button>
 </section>
 <!-- 签名计算 -->
 <script src="./sdk_im/debug/lib-generate-test-usersig.min.js"></script>
@@ -24,13 +29,15 @@
 <script src="./im/callbacks.js"></script>
 <script src="./utils/access.js"></script>
 <script src="./utils/groups.js"></script>
+<script src="./utils/messages.js"></script>
 <script>
   var btnLogin = document.querySelector('.btn-login')
   var btnLogout = document.querySelector('.btn-logout')
   var btnCreate = document.querySelector('.btn-create')
   var btnJoin = document.querySelector('.btn-join')
   var btnQuit = document.querySelector('.btn-quit')
-  var userId = 'user001'
+  var btnSend = document.querySelector('.btn-send')
+  var userId = 'user' + Math.floor(Math.random() * 10000)
   var groupId = 'group001'
   var signInfo = genTestUserSig(userId)
   //当前用户身份
@@ -54,7 +61,7 @@
   btnLogout.addEventListener('click', () => {
     webimLogout(cb_im_logout_success, cb_im_logout_fail)
   })
-  // 建群
+  // 建群 - 可能不在前端创建
   btnCreate.addEventListener('click', () => {
     createBigGroup(groupId, loginInfo, () => {
       // applyJoinBigGroup(groupId)
@@ -67,6 +74,16 @@
   // 退群
   btnQuit.addEventListener('click', () => {
     quitBigGroup(groupId)
+  })
+  // 发消息
+  btnSend.addEventListener('click', () => {
+    var msg = setMsg(groupId, loginInfo)
+    setElem(msg, 'a text message')
+    webim.sendMsg(msg, function(resp) {
+      console.log('iii sendMsg success')
+    }, function(err) {
+      console.error('iii sendMsg fail')
+    });
   })
 </script>
 </body>

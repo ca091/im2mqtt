@@ -26,7 +26,16 @@ function onBigGroupMsgNotify(newMsgList) {
   var newMsg;
   for (var i = newMsgList.length - 1; i >= 0; i--) { //遍历消息，按照时间从后往前
     newMsg = newMsgList[i];
-    webim.Log.warn('receive a new group(AVChatRoom) msg: ' + newMsg.getFromAccountNick());
+    webim.Log.warn('iii receive a new group(AVChatRoom) msg: ' + newMsg.getFromAccountNick());
+    var elems = newMsg.getElems();
+    var elem = elems[0]; // 以第一个元素作为判断条件
+    if (elem.type === webim.MSG_ELEMENT_TYPE.CUSTOM) {
+      var data = elem.getContent().getData();
+      console.log('iii msg: ' + data)
+    } else if (elem.type === webim.MSG_ELEMENT_TYPE.TEXT) {
+      var str = elem.getContent().getText();
+      console.log('iii msg: ' + str)
+    }
   }
 }
 
