@@ -12,3 +12,7 @@ function webimLogin(loginInfo, listeners, options, successCB, errorCB) {
       }
   );
 }
+
+function webimLogout(successCB, errorCB) {
+  webim.logout(successCB, errorCB);
+}

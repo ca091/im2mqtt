@@ -1,7 +1,15 @@
-function cb_success(res) {
-  console.log(res)
+function cb_im_login_success(res) {
+  console.log('cb_im_login_success')
 }
 
-function cb_fail(error) {
-  console.warn(error)
+function cb_im_login_fail(error) {
+  console.warn('cb_im_login_fail')
+}
+
+function cb_im_logout_success(res) {
+  console.log('cb_im_logout_success')
+}
+
+function cb_im_logout_fail(error) {
+  console.warn('cb_im_logout_fail')
 }
