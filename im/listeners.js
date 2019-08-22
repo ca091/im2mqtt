@@ -31,7 +31,7 @@ function onBigGroupMsgNotify(newMsgList) {
 }
 
 //监听事件
-var listeners = {
+var listeners_im = {
   "onConnNotify": onConnNotify //监听连接状态回调变化事件,必填
   ,
   "jsonpCallback": () => {} //IE9(含)以下浏览器用到的jsonp回调函数，

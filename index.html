@@ -2,9 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>im2mqtt</title>
+  <title>im to mqtt</title>
 </head>
 <body>
+<!-- 签名计算 -->
+<script src="./sdk_im/debug/lib-generate-test-usersig.min.js"></script>
+<script src="./sdk_im/debug/GenerateTestUserSig.js"></script>
 
+<!--web im sdk-->
+<script src="./sdk_im/sdk/webim.min.js"></script>
+<script src="./sdk_im/sdk/json2.min.js"></script>
+
+<script src="./im/listeners.js"></script>
+<script src="./im/callbacks.js"></script>
+<script src="./utils/login-out.js"></script>
+<script>
+  var userId = 'qwe001'
+  var signInfo = genTestUserSig(userId)
+  //当前用户身份
+  var loginInfo = {
+    'sdkAppID': signInfo.sdkAppID, //用户所属应用id,必填
+    // 'accountType': accountType, //用户所属应用帐号类型, 已废弃
+    'identifier': userId, //当前用户ID,必须是否字符串类型，必填
+    'userSig': signInfo.userSig, //当前用户身份凭证，必须是字符串类型，必填
+    'identifierNick': null, //当前用户昵称，不用填写，登录接口会返回用户的昵称，如果没有设置，则返回用户的id
+    // 'headurl': 'img/me.jpg' //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
+  };
+  var options = {
+    'isAccessFormalEnv': false, //是否访问正式环境，默认访问正式，选填
+    'isLogOn': true //是否开启控制台打印日志,默认开启，选填
+  }
+  webimLogin(loginInfo, listeners_im, options, cb_success, cb_fail)
+</script>
 </body>
 </html>
